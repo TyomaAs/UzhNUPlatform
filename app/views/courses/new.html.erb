@@ -1,0 +1,8 @@
+<% if current_user.role == "admin" || current_user.role == "teacher" %>
+	<h2>Додавання нового курсу</h2>
+	<%= form_for @course, url: courses_path do |f| %>
+		<%= f.text_field :name, class: 'form-control', style: 'max-width: 500px' %> 		
+		<%= f.submit "Зареєструвати", class: "btn btn-primary", style: 'margin 10px 0 0 0' %>
+	<% end %>
+<% end %>
+

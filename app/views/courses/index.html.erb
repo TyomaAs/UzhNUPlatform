@@ -1,0 +1,13 @@
+<h2>Всі курси</h2>
+<% if current_user && (current_user.role == "admin" || current_user.role == "teacher") %>
+	<%= link_to "Створити курс", new_course_path, class: 'btn btn-outline-primary', style: 'max-width: 150px' %>
+<% end %>
+<hr>
+<% @courses.each do |course|%>
+	<div class="alert alert-light">
+		<h3 style="margin: 10px;"><%= course.name %></h3>
+		<p style="margin: 10px;"><%= course.user.name %></p>
+		<%= link_to "Детальніше", course_path(course), :class => 'btn-outline-primary' %>
+	</div>
+	<hr>
+<% end %>

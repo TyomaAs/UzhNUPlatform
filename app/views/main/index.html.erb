@@ -1,0 +1,27 @@
+<div class="grayblock courses">
+	<div class="titleadmin">
+		<div class="title">
+			<h3 class="title">Всі курси</h3>
+		</div>
+		<% if current_user.role == "admin" || current_user.role == "teacher" %>
+			<div class="buttons_admin">
+				<%= link_to "Створити курс", new_course_path, class: 'add_cours'%>
+			</div> 
+		<% end %>
+	</div> 
+	<div class="all_cards">
+	<% @courses.each do |course|%>
+		<%= link_to course_path(course), :class => 'btn-outline-primary' do %>
+			<div class="card_cours">
+					<div class="card_image">
+						<%= image_tag('Fon1.jpeg') %>
+					</div>
+					<div class="card_info">
+						<h4 class="card_info_title"><%= course.name %></h4>
+						<span class="card_info_text"><%= course.user.name %></span>      
+					</div>
+			</div>
+		<% end %>
+	<% end %>
+	</div>
+</div>

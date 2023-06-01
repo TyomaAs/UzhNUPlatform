@@ -1,0 +1,50 @@
+<div class="grayblock courses">
+		<div class="all_cards">
+			<div class="content" id="newsContent">
+				<div class="course_post">
+						<div class="course_post_header" style="max-width: 1000px">
+							<div class="course_post_header_info">
+								<div class="course_post_header_logo">
+									<%= image_tag('user.png') %>
+								</div>
+								<div class="info_teacher">
+										<span class="name"><%= @post.user.name %></span>
+										<span class="date">Дата публікації: <%= @post.date %></span>
+								</div>
+							</div>    
+							<div class="buttons_admin">
+								<% if current_user.email == @course.user.email %>
+									<%= button_to "Видалити", course_post_path(@course, @post), method: :delete, class: 'delete'%>
+								<% end %>
+							</div>  
+						</div>
+						<div class="course_post_body">
+							<div class="post_body_text" style="color: #000">
+								<div class="post_body_title"><%= @post.title %></div>
+							<div class="post_body_subtitle"><%= @post.body %></div>
+							</div>
+						</div>
+						<div class="course_post_footer" style="max-width: 1000px; padding: 20px">
+							<%= form_for [@post, Comment.new], url: course_post_comments_path(@post.course, @post) do |f| %>
+								<div class="course_post_footer_input" style="display: flex; justify-content: space-between; gap: 10px; max-width: 100%">
+									<div class="com__ava" >
+										<%= image_tag('user.png') %>
+									</div>
+									<%= f.text_field :body, class: 'comentary', placeholder: 'Залишити коментар...', style: 'flex 1 1 auto;' %>
+									<%= f.submit '✉️', style: 'flex: 0 0 auto; width: 40px; height: 40px; background-color: #0000; border: none; font-size: 1.5em; line-height: 0.1em' %>
+								</div>
+							<% end %>
+							<div class="all_coments" style="flex-direction: column; align-items: flex-start; width: 100%">
+									<div class="all_coments_title" style="width: 100%">Коментарі:</div>
+									<% @post.comments.each do |comment|%>
+										<div class="alert alert-light" style="max-width: 600px">
+											<strong><%= comment.username %>:</strong>
+											<%= comment.body %>
+										</div>
+									<% end %>
+							</div>
+						</div>
+				</div>
+			</div>
+		</div>
+</div>

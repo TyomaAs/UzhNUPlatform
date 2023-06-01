@@ -1,0 +1,21 @@
+<% if current_user && current_user.role == "admin" %>
+
+<div style="display: flex; flex-direction: column; justify-content: start; align-items: start; width: 100%">
+  <div style="align-self: flex-end; display: inline-block;">
+    <%= link_to "New User", new_user_path, class: 'btn btn-outline-primary', style: 'margin: 0 0 10px 0' %>
+  </div>
+  <% @users.each do |user| %>
+    <div class="alert alert-light" style="flex: 1 1 auto; display: flex; justify-content: flex-start; align-item: center; width: 100%; gap: 15px">
+      <span><%= user.name %></span>
+      <span><%= user.email %></span>
+      <span><%= user.faculty %></span>
+      <span><%= user.role %></span>
+      <div style="margin: 0 0 0 auto; display: inline-flex; gap: 5px">
+        <%= link_to "View", user_path(user), class: 'btn btn-outline-primary' %>
+        <%= link_to "Edit", edit_user_path(user), class: 'btn btn-outline-primary' %>
+        <%= button_to "Delete", user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger', style: 'display: inline-block' %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<% end %>

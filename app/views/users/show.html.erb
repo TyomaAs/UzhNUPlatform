@@ -1,0 +1,43 @@
+<!-- app/views/users/show.html.erb -->
+<div class="grayblock courses">
+	<div class="all_cards">
+		<div class="content" id="newsContent">
+			<div class="user">
+				<div class="user_header">
+					<div class="user_header_info">
+						<div class="group_info">
+								<div class="user_header_logo">
+                    			<%= image_tag('user.png') %>
+								</div>
+								<div class="info_user">
+									<span class="name"><%= @user.name %></span>
+									<div class="Facultyrole">
+										<span class="Faculty" style="color: #000"><%= @user.faculty %></span>
+										<span class="role"><%= @user.role %></span>
+									</div>
+								</div>
+						</div>
+					</div>    
+				</div>
+				<hr>
+				<div class="user_body">
+					<div class="detal" style="color: #000">
+						<div class="detal_email">
+								<span class="text_email">Електронна пошта</span>
+								<span class="email"><%= @user.email %></span>
+						</div>
+						<div class="detal_country">
+								<span class="detal_text">Країна</span>
+								<span class="detal_ukraine">Україна</span>
+						</div>
+						<div class="detal_sity">
+								<span class="detal_text">Місто</span>
+								<span class="detal_uzgorod">Ужгород</span>
+						</div>
+					</div>
+				</div>
+				<div class="user_footer"></div>
+			</div>
+		</div>
+	</div>
+</div>

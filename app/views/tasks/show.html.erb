@@ -1,0 +1,43 @@
+<div class="grayblock courses">
+		<div class="all_cards">
+			<div class="content" id="newsContent">
+				<div class="work">
+						<div class="work_header">
+							<div class="work_header_info">
+								<div class="group_info">
+										<div class="work_header_logo">
+											<%= image_tag('task.svg') %>
+										</div>
+										<div class="info_work">
+											<span class="name"><%= @task.title %></span>
+											<div class="namedate">
+												<span class="teacher" style="color: #000"><%= @task.user.name %></span>
+												<span class="date">Дата публікації: <%= @task.date_of_published %></span>
+											</div>
+										</div>
+								</div>
+								<div class="deadline_block">
+										<span class="deadline"><%= @task.deadline %></span>
+								</div>
+							</div>    
+						</div>
+						<hr>
+						<div class="work_body">
+							<div class="post_body_text">
+								
+							<div class="post_body_subtitle" style="color: #000"><%= @task.body %></div>
+							</div>
+						</div>
+						<hr>
+						<div class="work_footer">
+							<div class="buttons_admin">
+								<% if current_user.email == @course.user.email %>
+									<%= link_to "Редагувати завдання", edit_course_task_path(@course, @task), :class => 'edit' %>
+									<%= button_to "Видалити завдання", course_task_path(@course, @task), method: :delete, class: 'delete' %>
+								<% end %>  
+							</div>
+						</div>
+				</div>
+			</div>
+		</div>
+</div>

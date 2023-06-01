@@ -1,0 +1,82 @@
+<div style="display: inline-flex; justify-content: flex-end; align-items: center; gap: 5px; margin: 0 0 15px 0">
+	<% if current_user.role == "admin" || current_user.email == @course.user.email %>
+		<%= link_to "Редагувати курс", edit_course_path(@course), class: 'btn btn-outline-primary', style: 'margin: 0 auto 0 0; max-width: 200px' %>
+	<% end %> 
+	<% if current_user.email == @course.user.email %>
+		<%= link_to "Створити пост", new_course_post_path(@course), class: 'btn btn-outline-primary', style: 'max-width: 200px' %>
+		<%= link_to "Створити завдання", new_course_task_path(@course), class: 'btn btn-outline-primary', style: 'max-width: 200px' %>
+	<% end %>
+</div>
+<div class="buttons">
+	<button class="Button active" id="newsButton">Стрічка новин</button>
+	<button class="Button" id="tasksButton">Стрічка завдань</button>
+</div>
+<div class="grayblock courses">
+	<div class="all_cards">
+		<div class="content" id="newsContent">
+			<% @course.posts.each do |post|%>	
+				<div class="post">
+					<div class="post_header">
+						<div class="post_header_info">
+							<div class="post_header_logo">
+								<%= image_tag('user.png') %>
+							</div>
+							<div class="info_teacher">
+								<span class="name"><%= post.user.name %></span>
+								<span class="date"><%= post.date %></span>
+							</div>
+						</div>    
+						<% if current_user.email == @course.user.email %>
+							<div class="buttons_admin">
+								<%= link_to "Редагувати", edit_course_post_path(@course, post), :class => 'edit'%>
+							</div>  
+						<% end %>
+					</div>
+					<div class="post_body">
+						<div class="post_body_text">
+							<div class="post_body_title" style="color: #000">
+								<%= post.title %>
+							</div>
+						<div class="post_body_subtitle" style="color: #000">
+							<%= post.body %>
+						</div>
+					</div>
+					</div>
+					<div class="post_footer">
+						<div class="more_inf">
+							<%= link_to "Докладніше", course_post_path(@course, post), :class => 'more' %>
+						</div>
+					</div>
+				</div>
+			<% end %>
+		</div>
+		<div class="content" id="tasksContent" style="display: none">
+			<% @course.tasks.each do |task|%>       
+				<div class="task">
+					<div class="task_header" id="toggleButton">
+						<div class="task_header_info">
+							<div class="task_header_logo">
+								<%= image_tag('task.svg') %>
+							</div>
+							<div class="info_lab">
+								<span class="name"><%= task.title %></span>
+							</div>
+						</div>    
+						<span class="deadline"><%= task.deadline %></span>
+					</div>
+					<div class="task_body" id="content" style="display: none; color: #000">
+						<span class="task_body_date">Дата публікації: <%= task.date_of_published %></span>
+						<div class="task_body_subtitle"><%= task.body %></div>
+					</div>
+					<div class="task_footer" id="content" style="display: none">
+						<div class="more_inf">
+							<%= link_to "Детальніше", course_task_path(@course, task), :class => 'more' %>
+						</div>                               
+					</div>   
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+

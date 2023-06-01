@@ -1,0 +1,21 @@
+<div class="slider">
+  <div class="container">
+    <div class="info">
+      <div class="info_text">
+        <h2>Вітаємо вас на нашій навчальній платформі УжНУ</h2>
+        <br>
+        <p>1. Використовуємо тільки свої офіційні облікові записи (пошти @uzhnu.edu.ua або @student.uzhnu.edu.ua).</p>
+        <p>2. Не передавайте свій пароль іншим, ви відповідаєте за всі дії, зроблені з вашого облікового запису.</p>
+      </div>
+    </div>
+    <div class="login">
+      <h2 class="title">Авторизація</h2>
+      <%= form_with url: login_path, scope: :user do |f| %>
+			
+        <%= f.text_field :email, placeholder: "Введіть електронну пошту", required: true, autofocus: true, class: "form-control" %>
+        <%= f.password_field :password, placeholder: "Введіть пароль", required: true, class: "form-control", id: "username" %>
+        <%= f.submit "Увійти", class: "btn btn-primary", id: "password" %>
+      <% end %>
+    </div>
+  </div>
+</div>

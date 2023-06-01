@@ -1,0 +1,33 @@
+<% if current_user.role == "admin" %>
+<h2>Редактування користувача</h2>
+<%= form_for @user, url: user_path(@user) do |f| %>
+	<p>
+		ПІБ<br> 
+		<%= f.text_field(:name, class: 'form-control') %> 
+	</p>
+
+	<p>
+		Факультет<br> 
+		<%= f.text_field(:faculty, class: 'form-control') %> 
+	</p>
+
+	<p>
+		Email<br> 
+		<%= f.text_field(:email, class: 'form-control') %> 
+	</p>
+
+	<p>
+		Password<br> 
+		<%= f.password_field(:password, class: 'form-control') %> 
+	</p>
+
+	<p>
+		Роль<br> 
+		<%= f.text_field(:role, class: 'form-control') %> 
+	</p>
+
+	<p>
+		<%= f.submit(class: 'btn btn-success') %>
+	</p>
+<% end %>
+<% end %>

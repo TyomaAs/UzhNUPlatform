@@ -1,0 +1,28 @@
+<% if current_user.email == @task.user.email %>
+	<h2>Редактування завдання</h2>
+	<%= form_for :task, url: course_task_path(@course, @task), method: :patch  do |f| %>
+		<% if @task.errors.any? %>
+			<% @task.errors.full_messages.each do |msg| %>
+				<div class="alert alert-danger"><%= msg %></div>
+			<% end %>
+		<% end %>
+		<p>
+			Назва<br> 
+			<%= f.text_field(:title, {:class => 'form-control'}) %> 
+		</p>
+
+		<p>
+			Текст завдання<br> 
+			<%= f.text_area(:body, {:class => 'form-control'}) %>
+		</p>
+
+		<p>
+			Кінцева дата здачі<br> 
+			<%= f.date_field(:deadline, {:class => 'form-control'}) %>
+		</p>
+
+		<p>
+			<%= f.submit({:class => 'btn btn-success'}) %>
+		</p>
+	<% end %>
+<% end %>

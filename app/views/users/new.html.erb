@@ -1,0 +1,17 @@
+<div class="container">
+	<h2>Додавання нового користувача</h2>
+	<%= form_with model: @user, url: users_path do |f| %>
+		<%= render partial: "shared/form_errors", locals: { object: f.object } %>
+		<%= f.text_field :name, placeholder: "Введіть імʼя", required: true, autofocus: true, class: "form-control" %>
+
+		<%= f.text_field :faculty, placeholder: "Введіть факультет", required: true, autofocus: true, class: "form-control" %>
+
+		<%= f.text_field :email, placeholder: "Введіть електронну пошту", required: true, autofocus: true, class: "form-control" %>
+
+		<%= f.password_field :password, placeholder: "Введіть пароль", required: true, class: "form-control" %>
+
+		<%= f.text_field :role, placeholder: "Введіть роль (student, teacher, admin)", required: true, autofocus: true, class: "form-control" %>
+
+		<%= f.submit "Зареєструвати", class: "btn btn-primary" %>
+	<% end %>
+</div>
